@@ -4,7 +4,6 @@ const port = 3000; // Define the port
 
 // Create the HTTP server
 const server = http.createServer(function(req, res) {
-    res.writeHead(200, { 'Content-Type': 'text/html' }); // Set response header for HTML
     fs.readFile('index.html', function(error, data) {
         if (error) {
             res.writeHead(404); // File not found

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PowerShell Script Generator</title>
+<style>
+body {
+font-family: 'Arial', sans-serif;
+line-height: 1.6;
+color: #333;
+margin: 0;
+padding: 0;
+}
+header {
+background-color: #2c3e50;
+color: #ecf0f1;
+padding: 1rem 0;
+}
+nav ul {
+display: flex;
+justify-content: center;
+list-style-type: none;
+padding: 0;
+}
+nav ul li {
+margin: 0 1rem;
+}
+nav ul li a {
+color: #ecf0f1;
+text-decoration: none;
+font-weight: bold;
+}
+main {
+max-width: 1200px;
+margin: 0 auto;
+padding: 2rem;
+}
+h1, h2 {
+color: #2c3e50;
+}
+select, textarea, input {
+width: 100%;
+padding: 10px;
+margin: 10px 0;
+}
+.generate-btn {
+background-color: #FF6600;
+color: white;
+border: none;
+padding: 1rem;
+font-size: 1rem;
+cursor: pointer;
+transition: background-color 0.3s ease;
+}
+.generate-btn:hover {
+background-color: #0000FF;
+}
+.output-container {
+background-color: #f9f9f9;
+padding: 20px;
+border: 1px solid #ccc;
+margin-top: 20px;
+white-space: pre-wrap; /* Keeps the formatting in the textarea */
+}
+</style>
+</head>
+<body>
+<header>
+<nav>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#generator">PowerShell Script Generator</a></li>
+</ul>
+</nav>
+</header>
+<main>
+<section id="generator">
+<h2>Generate PowerShell Script</h2>
+<form id="promptForm">
+<label for="imageUrl">Google Image URL:</label>
+<input type="text" id="imageUrl" placeholder="Enter Google Image URL" />
+<label for="models">Choose SDXL Model:</label>
+<select id="models">
+<option value="3Guofeng3_v34.safetensors [50f420de]">3Guofeng3_v34.safetensors [50f420de]</option>
+<option value="absolutereality_V16.safetensors [37db0fc3]">absolutereality_V16.safetensors [37db0fc3]</option>
+<option value="absolutereality_v181.safetensors [3d9d4d2b]">absolutereality_v181.safetensors [3d9d4d2b]</option>
+<option value="amIReal_V41.safetensors [0a8a2e61]">amIReal_V41.safetensors [0a8a2e61]</option>
+<option value="analog-diffusion-1.0.ckpt [9ca13f02]">analog-diffusion-1.0.ckpt [9ca13f02]</option>
+<option value="anythingv3_0-pruned.ckpt [2700c435]">anythingv3_0-pruned.ckpt [2700c435]</option>
+<option value="anything-v4.5-pruned.ckpt [65745d25]">anything-v4.5-pruned.ckpt [65745d25]</option>
+<option value="anythingV5_PrtRE.safetensors [893e49b9]">anythingV5_PrtRE.safetensors [893e49b9]</option>
+<option value="AOM3A3_orangemixs.safetensors [9600da17]">AOM3A3_orangemixs.safetensors [9600da17]</option>
+<option value="blazing_drive_v10g.safetensors [ca1c1eab]">blazing_drive_v10g.safetensors [ca1c1eab]</option>
+<option value="breakdomain_I2428.safetensors [43cc7d2f]">breakdomain_I2428.safetensors [43cc7d2f]</option>
+<option value="breakdomain_M2150.safetensors [15f7afca]">breakdomain_M2150.safetensors [15f7afca]</option>
+<option value="cetusMix_Version35.safetensors [de2f2560]">cetusMix_Version35.safetensors [de2f2560]</option>
+<option value="childrensStories_v13D.safetensors [9dfaabcb]">childrensStories_v13D.safetensors [9dfaabcb]</option>
+<option value="childrensStories_v1SemiReal.safetensors [a1c56dbb]">childrensStories_v1SemiReal.safetensors [a1c56dbb]</option>
+<option value="childrensStories_v1ToonAnime.safetensors [2ec7b88b]">childrensStories_v1ToonAnime.safetensors [2ec7b88b]</option>
+<option value="Counterfeit_v30.safetensors [9e2a8f19]">Counterfeit_v30.safetensors [9e2a8f19]</option>
+<option value="cuteyukimixAdorable_midchapter3.safetensors [04bdffe6]">cuteyukimixAdorable_midchapter3.safetensors [04bdffe6]</option>
+<option value="cyberrealistic_v33.safetensors [82b0d085]">cyberrealistic_v33.safetensors [82b0d085]</option>
+<option value="dalcefo_v4.safetensors [425952fe]">dalcefo_v4.safetensors [425952fe]</option>
+<option value="deliberate_v2.safetensors [10ec4b29]">deliberate_v2.safetensors [10ec4b29]</option>
+<option value="deliberate_v3.safetensors [afd9d2d4]">deliberate_v3.safetensors [afd9d2d4]</option>
+<option value="dreamlike-anime-1.0.safetensors [4520e090]">dreamlike-anime-1.0.safetensors [4520e090]</option>
+<option value="dreamlike-diffusion-1.0.safetensors [5c9fd6e0]">dreamlike-diffusion-1.0.safetensors [5c9fd6e0]</option>
+<option value="dreamlike-photoreal-2.0.safetensors [fdcf65e7]">dreamlike-photoreal-2.0.safetensors [fdcf65e7]</option>
+<option value="dreamshaper_6BakedVae.safetensors [114c8abb]">dreamshaper_6BakedVae.safetensors [114c8abb]</option>
+<option value="dreamshaper_7.safetensors [5cf5ae06]">dreamshaper_7.safetensors [5cf5ae06]</option>
+<option value="dreamshaper_8.safetensors [9d40847d]">dreamshaper_8.safetensors [9d40847d]</option>
+<option value="edgeOfRealism_eorV20.safetensors [3ed5de15]">edgeOfRealism_eorV20.safetensors [3ed5de15]</option>
+<option value="EimisAnimeDiffusion_V1.ckpt [4f828a15]">EimisAnimeDiffusion_V1.ckpt [4f828a15]</option>
+<option value="elldreths-vivid-mix.safetensors [342d9d26]">elldreths-vivid-mix.safetensors [342d9d26]</option>
+<option value="epicphotogasm_xPlusPlus.safetensors [1a8f6d35]">epicphotogasm_xPlusPlus.safetensors [1a8f6d35]</option>
+<option value="epicrealism_naturalSinRC1VAE.safetensors [90a4c676]">epicrealism_naturalSinRC1VAE.safetensors [90a4c676]</option>
+<option value="epicrealism_pureEvolutionV3.safetensors [42c8440c]">epicrealism_pureEvolutionV3.safetensors [42c8440c]</option>
+<option value="ICantBelieveItsNotPhotography_seco.safetensors [4e7a3dfd]">ICantBelieveItsNotPhotography_seco.safetensors [4e7a3dfd]</option>
+<option value="indigoFurryMix_v75Hybrid.safetensors [91208cbb]">indigoFurryMix_v75Hybrid.safetensors [91208cbb]</option>
+<option value="juggernaut_aftermath.safetensors [5e20c455]">juggernaut_aftermath.safetensors [5e20c455]</option>
+<option value="lofi_v4.safetensors [ccc204d6]">lofi_v4.safetensors [ccc204d6]</option>
+<option value="lyriel_v16.safetensors [68fceea2]">lyriel_v16.safetensors [68fceea2]</option>
+<option value="majicmixRealistic_v4.safetensors [29d0de58]">majicmixRealistic_v4.safetensors [29d0de58]</option>
+<option value="mechamix_v10.safetensors [ee685731]">mechamix_v10.safetensors [ee685731]</option>
+<option value="meinamix_meinaV9.safetensors [2ec66ab0]">meinamix_meinaV9.safetensors [2ec66ab0]</option>
+<option value="meinamix_meinaV11.safetensors [b56ce717]">meinamix_meinaV11.safetensors [b56ce717]</option>
+<option value="neverendingDream_v122.safetensors [f964ceeb]">neverendingDream_v122.safetensors [f964ceeb]</option>
+<option value="openjourney_V4.ckpt [ca2f377f]">openjourney_V4.ckpt [ca2f377f]</option>
+<option value="pastelMixStylizedAnime_pruned_fp16.safetensors [793a26e8]">pastelMixStylizedAnime_pruned_fp16.safetensors [793a26e8]</option>
+<option value="portraitplus_V1.0.safetensors [1400e684]">portraitplus_V1.0.safetensors [1400e684]</option>
+<option value="protogenx34.safetensors [5896f8d5]">protogenx34.safetensors [5896f8d5]</option>
+<option value="Realistic_Vision_V1.4-pruned-fp16.safetensors [8d21810b]">Realistic_Vision_V1.4-pruned-fp16.safetensors [8d21810b]</option>
+<option value="Realistic_Vision_V2.0.safetensors [79587710]">Realistic_Vision_V2.0.safetensors [79587710]</option>
+<option value="Realistic_Vision_V4.0.safetensors [29a7afaa]">Realistic_Vision_V4.0.safetensors [29a7afaa]</option>
+<option value="Realistic_Vision_V5.0.safetensors [614d1063]">Realistic_Vision_V5.0.safetensors [614d1063]</option>
+<option value="Realistic_Vision_V5.1.safetensors [a0f13c83]">Realistic_Vision_V5.1.safetensors [a0f13c83]</option>
+<option value="redshift_diffusion-V10.safetensors [1400e684]">redshift_diffusion-V10.safetensors [1400e684]</option>
+<option value="revAnimated_v122.safetensors [3f4fefd9]">revAnimated_v122.safetensors [3f4fefd9]</option>
+<option value="rundiffusionFX25D_v10.safetensors [cd12b0ee]">rundiffusionFX25D_v10.safetensors [cd12b0ee]</option>
+<option value="rundiffusionFX_v10.safetensors [cd4e694d]">rundiffusionFX_v10.safetensors [cd4e694d]</option>
+<option value="sdv1_4.ckpt [7460a6fa]">sdv1_4.ckpt [7460a6fa]</option>
+<option value="v1-5-pruned-emaonly.safetensors [d7049739]">v1-5-pruned-emaonly.safetensors [d7049739]</option>
+<option value="v1-5-inpainting.safetensors [21c7ab71]">v1-5-inpainting.safetensors [21c7ab71]</option>
+<option value="shoninsBeautiful_v10.safetensors [25d8c546]">shoninsBeautiful_v10.safetensors [25d8c546]</option>
+<option value="theallys-mix-ii-churned.safetensors [5d9225a4]">theallys-mix-ii-churned.safetensors [5d9225a4]</option>
+<option value="timeless-1.0.ckpt [7c4971d4]">timeless-1.0.ckpt [7c4971d4]</option>
+<option value="toonyou_beta6.safetensors [980f6b15]">toonyou_beta6.safetensors [980f6b15]</option>
+</select>
+</select>
+<label for="sampler">Choose Sampler:</label>
+<select id="sampler">
+<option value="LMS Karras">LMS Karras</option>
+<option value="DPM++ 3M SDE Karras">DPM++ 3M SDE Karras</option>
+<option value="Euler a">Euler a</option>
+</select>
+<label for="steps">Steps:</label>
+<input type="number" id="steps" value="70" />
+<label for="denoising">Denoising Strength:</label>
+<input type="number" id="denoising" step="0.001" value="0.941" />
+<label for="prompt">Prompt:</label>
+<input type="text" id="prompt" value="rain" />
+<button type="button" class="generate-btn" onclick="generateScript()">Generate Script</button>
+</form>
+<div id="output" class="output-container">
+<h3>Generated PowerShell Script</h3>
+<textarea id="scriptOutput" rows="20"></textarea>
+</div>
+</section>
+</main>
+<footer>
+<p>&copy; 2024 PowerShell Script Generator. All rights reserved.</p>
+</footer>
+<script>
+function generateScript() {
+const imageUrl = document.getElementById('imageUrl').value;
+const model = document.getElementById('models').value;
+const sampler = document.getElementById('sampler').value;
+const steps = document.getElementById('steps').value;
+const denoising = document.getElementById('denoising').value;
+const prompt = document.getElementById('prompt').value;
+const script = `
+try {
+# Define the Google Drive URL and extract the file ID
+$imageUrlToTransform = "${imageUrl}"
+$fileId = $imageUrlToTransform -replace 'https://drive.google.com/file/d/([^/]+)/view.*', '$1'
+$directDownloadLink = "https://drive.google.com/uc?export=download&id=$fileId"
+# Define parameters for the initial transformation
+$initialModel = "${model}"
+$initialSteps = ${steps}
+$initialWidth = 1024
+$initialHeight = 1024
+$initialDenoisingStrength = ${denoising}
+$initialSampler = "${sampler}"
+$initialPrompt = "${prompt}"
+$initialCfgScale = 5
+$initialPollingInterval = 1
+# Define Headers
+$headers = @{
+accept = "application/json"
+content-type = "application/json"
+X-Prodia-Key = "fcae63ee-262a-44d9-8941-cdf36ae371ad"
+}
+# Prepare the request body for the initial transformation
+$bodyInitial = @{
+imageUrl = $directDownloadLink
+model = $initialModel
+steps = $initialSteps
+cfg_scale = $initialCfgScale
+width = $initialWidth
+height = $initialHeight
+sampler = $initialSampler
+prompt = $initialPrompt
+} | ConvertTo-Json
+# API URL for the initial transformation
+$apiUrlInitialTransform = 'https://api.prodia.com/v1/sd/transform'
+# Send the POST request to transform the initial image
+$responseInitial = Invoke-WebRequest -Uri $apiUrlInitialTransform -Method POST -Headers $headers -ContentType 'application/json' -Body $bodyInitial
+$responseContentInitial = $responseInitial.Content | ConvertFrom-Json
+# Log the full response for debugging
+Write-Output "Initial Transformation Job ID: $($responseContentInitial.job)"
+if ($responseInitial.StatusCode -eq 200) {
+$jobIdInitial = $responseContentInitial.job
+Write-Output "Polling status for initial job $jobIdInitial..."
+$imageUrlInitialTransformed = $null
+while ($imageUrlInitialTransformed -eq $null) {
+Start-Sleep -Seconds $initialPollingInterval
+$statusResponseInitial = Invoke-WebRequest -Uri "https://api.prodia.com/v1/job/$jobIdInitial" -Method GET -Headers $headers -ContentType 'application/json'
+$statusContentInitial = $statusResponseInitial.Content | ConvertFrom-Json
+if ($statusContentInitial.status -eq "succeeded") {
+$imageUrlInitialTransformed = $statusContentInitial.imageUrl
+Write-Output "Initial transformation succeeded. Image URL: $imageUrlInitialTransformed"
+} elseif ($statusContentInitial.status -eq "failed") {
+Write-Output "Initial transformation failed."
+if ($statusContentInitial.error_message) {
+Write-Output "Error Message: $($statusContentInitial.error_message)"
+}
+break
+} else {
+Write-Output "Polling status for initial job $jobIdInitial..."
+}
+}
+} else {
+Write-Output "Failed to start initial transformation."
+}
+} catch {
+Write-Output "An error occurred: $_"
+}
+`;
+document.getElementById('scriptOutput').value = script;
+}
+</script>
+</body>
+</html>

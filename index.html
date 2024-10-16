@@ -3,58 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+    <title>Random Car Details in Three.js</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-image: url('images/background.png'); /* Background image */
-            background-size: cover; /* Cover the entire page */
-            background-position: center; /* Center the image */
-        }
-        nav {
-            display: flex;
-            justify-content: space-around;
-            background-color: #333;
-            padding: 1rem;
-        }
-        nav img {
-            height: 50px; /* Adjust logo height */
-            margin-right: auto; /* Space between logo and links */
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        .content {
-            padding: 20px;
-        }
-        h1 {
-            text-align: center;
-        }
+        body { margin: 0; }
+        #car-details { position: absolute; color: white; font-size: 24px; }
     </style>
 </head>
 <body>
+    <div id="car-details"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/GLTFLoader.js"></script>
+    <script>
+        // Scene setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
 
-    <nav>
-        <img src="images/logo.png" alt="Logo"> <!-- Logo -->
-        <a href="index.html">Home</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="download.html">Download</a>
-        <a href="contact.html">Contact</a>
-        <a href="news.html">News</a>
-        <a href="games.html">Games</a>
-    </nav>
+        // Load car model
+        const loader = new THREE.GLTFLoader();
+        loader.load('path/to/car-model.glb', (gltf) => {
+            scene.add(gltf.scene);
+            // Optionally adjust model position
+            gltf.scene.position.set(0, 0, 0);
+        });
 
-    <div class="content">
-        <h1>VGAI Beta Tester Home</h1>
-        <p>Call or Text Leo if you have any questions!
+        // Generate random car details
+        function generateRandomCarDetails() {
+            const names = ['Mustang', 'Civic', 'Charger'];
+            const year = Math.floor(Math.random() * (2024 - 2000 + 1)) + 2000;
+            const color = Math.floor(Math.random() * 16777215).toString(16); // Random hex color
+            return {
+                name: names[Math.floor(Math.random() * names.length)],
+                year: year,
+                color: `#${color}`,
+                modifications: ["Spoilers", "Rims", "Tinted Windows"]
+            };
+        }
+
+        // Display car details
+        const carDetails = generateRandomCarDetails();
+        const detailsDiv = document.getElementById('car-details');
+        detailsDiv.style.color = carDetails.color;
+        detailsDiv.innerHTML = `Name: ${carDetails.name}<br>Year: ${carDetails.year}`;
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
         
-        </p>
-    </div>
-
+        // Camera position
+        camera.position.z = 5;
+    </script>
 </body>
 </html>
