@@ -1,1 +1,65 @@
-#Gallery.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #333;
+            padding: 1rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .content {
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+        }
+        .gallery img {
+            width: 100%;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="download.html">Download</a>
+        <a href="contact.html">Contact</a>
+        <a href="news.html">News</a>
+        <a href="games.html">Games</a>
+    </nav>
+
+    <div class="content">
+        <h1>Gallery</h1>
+        <div class="gallery">
+            <img src="image1.jpg" alt="Description of Image 1">
+            <img src="image2.jpg" alt="Description of Image 2">
+            <img src="image3.jpg" alt="Description of Image 3">
+            <img src="image4.jpg" alt="Description of Image 4">
+            <!-- Add more images as needed -->
+        </div>
+    </div>
+
+</body>
+</html>
