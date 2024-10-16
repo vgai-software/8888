@@ -7,12 +7,19 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-image: url('images/background.png'); /* Background image */
+            background-size: cover; /* Cover the entire page */
+            background-position: center; /* Center the image */
         }
         nav {
             display: flex;
             justify-content: space-around;
             background-color: #333;
             padding: 1rem;
+        }
+        nav img {
+            height: 50px; /* Adjust logo height */
+            margin-right: auto; /* Space between logo and links */
         }
         nav a {
             color: white;
@@ -32,11 +39,8 @@
 </head>
 <body>
 
-    <header>
-        <img src="testimage.png" alt="Logo" style="width: 150px; height: auto;">
-    </header>
-
     <nav>
+        <img src="images/logo.png" alt="Logo"> <!-- Logo -->
         <a href="index.html">Home</a>
         <a href="gallery.html">Gallery</a>
         <a href="download.html">Download</a>
@@ -46,8 +50,10 @@
     </nav>
 
     <div class="content">
-        <h1>Welcome to VGAI_BETA</h1>
-        <p>Text Leo if you have any questions</p>
+        <h1>VGAI Beta Tester Home</h1>
+        <p>Call or Text Leo if you have any questions!
+        
+        </p>
     </div>
 
 </body>
