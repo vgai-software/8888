@@ -1,0 +1,31 @@
+{
+  "name": "vgai",
+  "version": "1.0.0",
+  "description": "wavemaker",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vgai-software/8888.git"
+  },
+  "keywords": [
+    "web",
+    "javascript",
+    "vgui",
+    "3d",
+    "visualization",
+    "interactive"
+  ],
+  "author": "Virtual Growhouse, VGWORLDWIDE, LLC",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/vgai-software/8888/issues"
+  },
+  "homepage": "https://github.com/vgai-software/8888#readme",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}

@@ -1,15 +1,13 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "chrome",
-            "request": "launch",
-            "name": "Launch Chrome against localhost",
-            "url": "http://localhost:8080",
-            "webRoot": "${workspaceFolder}"
-        }
-    ]
-}
+    "name": "vgai",
+    "version": "1.0.0",
+    "description": "A project to manage car details in Three.js",
+    "main": "app.js",
+    "scripts": {
+      "start": "node server.js"
+    },
+    "keywords": [],
+    "author": "Your Name",
+    "license": "ISC"
+  }
+  
